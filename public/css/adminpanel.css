@@ -1,0 +1,120 @@
+body{
+    padding:0 !important;
+    margin:10px !important;
+    height:auto !important;
+    font-family: 'Montserrat', sans-serif !important;
+
+  }
+  .cont {
+    margin: 0 !important;
+    padding: 0;
+    width: 100%;
+    height:auto !important;
+    display: grid;
+    grid-template-columns: 18% 82%;
+    grid-template-rows: 55px 1fr;
+    grid-template-areas:
+    "sidebar navbar"
+    "sidebar main";
+  }
+
+  .sidebar-p {
+    background-color: #021B5B;
+    grid-area: sidebar;
+    height:auto !important;
+    padding-top: 3px;
+  }
+
+  .navbar-p {
+    background-color: cadetblue;
+    grid-area: navbar;
+    width: 100%;
+  }
+
+  .navbar {
+      height: 55px !important;
+  }
+
+  .main-p {
+    background-color: lightblue;
+    grid-area: main;
+    width: 100%;
+  }
+
+  /* Inicio Sidebar */
+  .titulo {
+    font-size: 1.3rem;
+    color: whitesmoke;
+  }
+
+  .btn {
+    color: whitesmoke !important;
+  }
+
+  .btn-toggle {
+    display: inline-flex;
+    align-items: center;
+    padding: .25rem .5rem;
+    font-weight: 600;
+    /* color: rgba(0, 0, 0, .65); */
+    color: whitesmoke;
+    background-color: transparent;
+    border: 0;
+  }
+  .btn-toggle:hover, .btn-toggle:focus {
+    /* color: rgba(0, 0, 0, .85); */
+    color: whitesmoke;
+    /* background-color: #0E2254; */
+  }
+
+  .btn-toggle::before {
+    width: 1.25em;
+    line-height: 0;
+    /* content: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='rgba%280,0,0,.5%29' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 14l6-6-6-6'/%3e%3c/svg%3e"); */
+    transition: transform .35s ease;
+    transform-origin: .5em 50%;
+  }
+
+  .btn-toggle[aria-expanded="true"] {
+    /* color: rgba(0, 0, 0, .85); */
+    color: whitesmoke;
+
+  }
+  .btn-toggle[aria-expanded="true"]::before {
+    transform: rotate(90deg);
+  }
+
+  .btn-toggle-nav a {
+    display: inline-flex;
+    padding: .1875rem .5rem;
+    margin-top: .125rem;
+    margin-left: 1.25rem;
+    text-decoration: none;
+  }
+
+/*   .btn-toggle-nav a:hover,
+  .btn-toggle-nav a:focus {
+    /* background-color: #0E2254;
+  } */
+
+  .fw-semibold { font-weight: 600; }
+  /* Final sidebar */
+
+  /* Inicio tabla */
+
+  .main-p {
+    padding: 25px;
+
+  }
+  .table {
+    font-size: 0.7rem;
+    width: 98%;
+    height: 60%;
+  }
+
+  #app{
+    height:auto !important;
+  }
+
+
+  /* Fin tabla */

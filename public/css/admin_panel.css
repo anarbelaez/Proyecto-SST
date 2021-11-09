@@ -1,0 +1,215 @@
+@import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+:root {
+  --offcanvas-width: 210px;
+  --top-navbar-height: 55px;
+  --azul-principal: #101A33;
+  --azul-secundario: #033C59;
+  --azul-secundario2: #A6C9FF;
+  --amarillo-principal: #EBB922;
+  --amarillo-secundario: #FBAB04;
+  --amarillo-secundario2: #ffd16f;
+  --gris-principal: #D7D5D2;
+  --fuente-principal: 'Lato', sans-serif !important;
+  --fuente-brand: 'Questrial', sans-serif !important;
+
+}
+body{
+  font-family: var(--fuente-principal);
+  font-size: 0.85rem !important;
+}
+
+.text-mustard {
+  color: var(--amarillo-principal) !important;
+}
+
+.text-alameda {
+    color: var(--azul-secundario) !important;
+  }
+
+.text-darkblue {
+  color: var(--azul-principal) !important;
+}
+
+.tb-seagreen {
+    color: SeaGreen !important;
+    background-color: #DAFFEA;
+  }
+
+.tb-brown {
+    color: Brown !important;
+    background-color: #ffdfdf;
+    font-size: 0.7rem !important;
+
+}
+
+.bg-mustard {
+  background-color: var(--amarillo-principal);
+}
+
+.bg-alameda {
+    background-color: var(--azul-secundario) !important;
+}
+
+.bg-lightblue {
+    background-color: var(--azul-secundario2) ;
+}
+
+.bg-lightmustard {
+    background-color: var(--amarillo-secundario2);
+}
+
+.bg-activegreen {
+    background-color: DarkSeaGreen;
+    border-radius: 5px;
+    padding: 2px;
+}
+
+.bg-inactivegray {
+    background-color: Thistle;
+    border-radius: 5px;
+    padding: 2px;
+}
+
+
+.text-sb {
+  color: var(--gris-principal);
+}
+
+.bg-toggler-sb {
+  border-color: transparent !important;
+}
+
+.brand {
+  font-family: var(--fuente-brand);
+}
+
+.navbar {
+  background-color: var(--azul-principal) !important;
+}
+
+.sidebar-nav {
+  width: var(--offcanvas-width);
+  background-color: var(--azul-principal) !important;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+}
+
+.sidebar-link .right-icon {
+  display: inline-flex;
+  transition: all ease 0.25s !important;
+}
+
+.sidebar-link[aria-expanded="true"] .right-icon {
+  transform: rotate(180deg);
+}
+
+@media (min-width:992px) {
+
+  body {
+    overflow: auto !important;
+  }
+  .offcanvas-backdrop::before {
+    display: none !important;
+  }
+  main {
+    margin-left: var(--offcanvas-width);
+  }
+  .sidebar-nav {
+    transform: none;
+    visibility: visible;
+    top: var(--top-navbar-height);
+    height: calc(100% - var(--top-navbar-height));
+  }
+}
+
+/* Editar la apariencia de los scrolls */
+
+.offcanvas-body::-webkit-scrollbar {
+    -webkit-appearance: none; /*Propiedad muy importante, permite editar el scroll*/
+    scroll-behavior: smooth;
+}
+
+.offcanvas-body::-webkit-scrollbar:vertical {
+    width:10px;
+}
+
+.offcanvas-body::-webkit-scrollbar-thumb {
+    background-color: var(--azul-principal);
+    border: 2px;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+}
+
+.table-responsive::-webkit-scrollbar-track {
+    border-radius: 5px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.1);
+}
+
+.table-responsive::-webkit-scrollbar {
+    -webkit-appearance: none; /*Propiedad muy importante, permite editar el scroll*/
+    scroll-behavior: smooth;
+}
+
+.table-responsive::-webkit-scrollbar {
+    height: 5px;
+    width:10px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb {
+    background-color: var(--gris-principal);
+    border: 2px;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+}
+
+.table-responsive::-webkit-scrollbar-track {
+    border-radius: 5px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.1);
+}
+
+/* Fin apariencia de los scrolls */
+
+.btn-p {
+    padding: 0 !important;
+}
+
+.boton-accion a {
+    text-decoration: none;
+  }
+
+.boton-accion form {
+    display: inline-block;
+}
+
+.dataTables_wrapper {
+    font-size: 0.78rem;
+}
+
+.page-item.active .page-link {
+    color: #000;
+    background-color: var(--gris-principal);
+    border-color: var(--gris-principal);
+}
+
+.form-control {
+    font-size: 0.85rem !important;
+}
+
+.form-select {
+    font-size: 0.85rem !important;
+}
+
+.btn {
+    font-size: 0.85rem;
+}
+
+/* Sweetalert */
+.sweetalert-eliminar {
+    font-size: 0.85rem !important;
+}
+/* Sweetalert */

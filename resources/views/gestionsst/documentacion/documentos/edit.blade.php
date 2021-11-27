@@ -42,6 +42,13 @@
                             <p class="text-danger">{{ $errors->first('descripcion') }}</p>
                         @endif
                     </div>
+                    <div class="">
+                        <div class="p-1 text-center fw-bold tb-brown">
+                            <span class="me-3"><i class="bi bi-exclamation-diamond-fill"></i></span>
+                            <span>En caso de que deba actualizar el documento, tenga en cuenta que solo se admiten documentos en formato PDF.</span>
+                            <span class="ms-3"><i class="bi bi-exclamation-diamond-fill"></i></span>
+                        </div>
+                    </div>
                     <div class="col-md-12">
                         <label for="documento" class="form-label fw-bold text-darkblue">
                             <i class="bi bi-dot me-1"></i>Elige el archivo:</label>

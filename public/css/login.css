@@ -3,8 +3,9 @@
   */
 
   body {
-    background-color: #021B5B !important;
+    background-color: #181D27 !important;
     margin: 10px;
+    font-size: 1rem;
     font-family: 'Montserrat', sans-serif !important;
   }
 
@@ -21,7 +22,7 @@
 
   .cont-left {
     background-color: #F0BD1D;
-    width: 55%;
+    width: 30%;
 
   }
 
@@ -42,9 +43,9 @@
 
   .card-header {
     text-align: center;
-    font-size: 30px;
+    font-size: 1.5rem;
     font-weight: bolder;
-    color: #021B5B;
+    color: #0f4b2b;
     border-color: transparent !important;
   }
 
@@ -59,7 +60,7 @@
   }
 
   .btn-primary {
-    background-color: #DC9F27 !important;
-    border-color: #DC9F27 !important;
+    background-color: #1a5f81 !important;
+    border-color: #1a5f81 !important;
     width: 150px;
   }

@@ -12,3 +12,4 @@
     <p>Su clave de acceso es {{ $usuario_password }} </p>
 </body>
 </html>
+

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\GestionSST;
 
 use App\Http\Controllers\Controller;
-use App\Models\GestionSST\DocumentosEmpleado;
 use App\Models\GestionSST\NivelesEstudio;
 use App\Models\GestionSST\PersonalSST;
 use Illuminate\Http\Request;
@@ -13,14 +12,7 @@ class PersonalController extends Controller
     public function index(){
 
         $empleados = PersonalSST::all();
-
-       /*  $documentos = DB::table('personal_documento as pd')
-                    ->select('pd.ruta_archivo')
-                    ->where('pd.personalsst_id','=',1)
-                    ->get(); */
-
-/*         $documentos = DocumentosEmpleado::where('personalsst_id','=',1)->get();
- */        return view('gestionsst.documentacion.personal.show',['empleados'=>$empleados]);
+        return view('gestionsst.documentacion.personal.show',['empleados'=>$empleados]);
     }
 
     public function create(){
@@ -35,69 +27,118 @@ class PersonalController extends Controller
             [
                 'nombre_empleado' => 'required',
                 'apellidos_empleado' => 'required',
-                'documento_identidad' => 'required|numeric',
+                'documento_identidad' => 'required|numeric|unique:personalsst,documento_identidad',
                 'nivel_estudio' => 'required|in:1,2,3,4,5',
                 'hdv'=> 'required|mimes:pdf',
                 'diploma'=> 'required|mimes:pdf',
                 'certisalud'=> 'required|mimes:pdf',
                 'curso50h'=> 'required|mimes:pdf',
             ],
-            [
-                'nombre_empleado.required' => 'El nombre del empleado es requerido.',
-                'apellidos_empleado.required' => 'El apellido del empleado es requerido.',
-                'documento_identidad.required' => 'Ingrese el número de documento de identidad del empleado.',
-                'nivel_estudio.in' => 'Seleccione el nivel de estudios del empleado.'
-            ]
         );
+
         //Guardar empleado
         $empleado = new PersonalSST;
         $empleado->nombre_empleado = $request->nombre_empleado;
         $empleado->apellidos_empleado = $request->apellidos_empleado;
         $empleado->documento_identidad = $request->documento_identidad;
-        $empleado->nivel_estudios_id = $request->nivel_estudio;
-        $empleado->save();
+        $empleado->nivelestudio_id = $request->nivel_estudio;
 
-        //Enviar documentos a tabla documentos_empleado
+        //Guardar archivos
         $documentos =[];
         if ($request->file('hdv')) $documentos[] = ($hdv = $request->file('hdv'));
         if ($request->file('diploma')) $documentos[] = ($diploma = $request->file('diploma'));
         if ($request->file('certisalud')) $documentos[] = ($certisalud = $request->file('certisalud'));
         if ($request->file('curso50h')) $documentos[] = ($curso50h = $request->file('curso50h'));
 
+        $ruta = public_path("documentosempleados/");
         foreach ($documentos as $documento)
         {
             if($documento === $hdv) {
-                $tipodoc = 1;
+                $tipodoc = 'Hoja de vida ';
+                $nombre = $tipodoc.$empleado->documento_identidad.".".$documento->guessExtension();
+                $empleado->hdv = $nombre;
             }elseif($documento === $diploma) {
-                $tipodoc = 2;
+                $tipodoc = 'Diploma de estudios ';
+                $nombre = $tipodoc.$empleado->documento_identidad.".".$documento->guessExtension();
+                $empleado->diploma = $nombre;
             }elseif($documento === $certisalud) {
-                $tipodoc = 3;
+                $tipodoc = 'Certificado de salud ';
+                $nombre = $tipodoc.$empleado->documento_identidad.".".$documento->guessExtension();
+                $empleado->certisalud = $nombre;
             }elseif($documento === $curso50h) {
-                $tipodoc = 4;
-            }
-
-            $nombre = $documento->getClientOriginalName();
-            $documento->move('ensayo','$nombre');
-            $documento_empleado = new DocumentosEmpleado;
-            $documento_empleado->personalsst_id = $empleado->id;
-            $documento_empleado->tipodocumento_id = $tipodoc;
-            $documento_empleado->ruta_archivo = $nombre;
-            $documento_empleado->save();
+                $tipodoc = 'Certificado Curso 50h ';
+                $nombre = $tipodoc.$empleado->documento_identidad.".".$documento->guessExtension();
+                $empleado->curso50h = $nombre;            }
+                $documento->move($ruta,$nombre);
         }
+        $empleado->save();
+        return redirect()->route('personal.show')->with('confirmacion','El usuario ha sido creado exitosamente');
     }
 
-/*         $this->documentosEmpleado($empleado, $hdv);
- */
+/*  $this->documentosEmpleado($empleado, $hdv);
     public function documentosEmpleado($empleado, $hdv) {
+    }
+ */
 
+    public function edit($id){
 
+        $empleado = PersonalSST::findOrFail($id);
+        $niveles_estudio = NivelesEstudio::all();
+        return view('gestionsst.documentacion.personal.edit',['empleado'=>$empleado,'niveles_estudio'=>$niveles_estudio]);
     }
 
-    public function edit(){
-        return view('gestionsst.documentacion.personal.edit');
-    }
+    public function update(Request $request, $id){
 
-    public function update(){
+        $request->validate(
+            [
+                'nombre_empleado' => 'required',
+                'apellidos_empleado' => 'required',
+                'documento_identidad' => 'required|numeric',
+                'nivel_estudio' => 'required|in:1,2,3,4,5',
+                'hdv'=> 'mimes:pdf',
+                'diploma'=> 'mimes:pdf',
+                'certisalud'=> 'mimes:pdf',
+                'curso50h'=> 'mimes:pdf',
+            ],
+        );
+        $empleado = PersonalSST::findOrFail($id);
+        $empleado->nombre_empleado = $request->nombre_empleado;
+        $empleado->apellidos_empleado = $request->apellidos_empleado;
+        $empleado->documento_identidad = $request->documento_identidad;
+        $empleado->nivelestudio_id = $request->nivel_estudio;
+
+        //Guardar archivos
+        $documentos =[];
+        if ($request->file('hdv')) $documentos[] = ($hdv = $request->file('hdv'));
+        if ($request->file('diploma')) $documentos[] = ($diploma = $request->file('diploma'));
+        if ($request->file('certisalud')) $documentos[] = ($certisalud = $request->file('certisalud'));
+        if ($request->file('curso50h')) $documentos[] = ($curso50h = $request->file('curso50h'));
+
+        $ruta = public_path("documentosempleados/");
+        foreach ($documentos as $documento)
+        {
+            if($documento === $hdv) {
+                $tipodoc = 'Hoja de vida ';
+                $nombre = $tipodoc.$empleado->documento_identidad.".".$documento->guessExtension();
+                $empleado->hdv = $nombre;
+            }elseif($documento === $diploma) {
+                $tipodoc = 'Diploma de estudios ';
+                $nombre = $tipodoc.$empleado->documento_identidad.".".$documento->guessExtension();
+                $empleado->diploma = $nombre;
+            }elseif($documento === $certisalud) {
+                $tipodoc = 'Certificado de salud ';
+                $nombre = $tipodoc.$empleado->documento_identidad.".".$documento->guessExtension();
+                $empleado->certisalud = $nombre;
+            }elseif($documento === $curso50h) {
+                $tipodoc = 'Certificado Curso 50h ';
+                $nombre = $tipodoc.$empleado->documento_identidad.".".$documento->guessExtension();
+                $empleado->curso50h = $nombre;
+            }
+                $documento->move($ruta,$nombre);
+        }
+
+        $empleado->update();
+        return redirect('/gestionsst/personal')->with('confirmacion','El usuario ha sido actualizado exitosamente');
 
     }
 }

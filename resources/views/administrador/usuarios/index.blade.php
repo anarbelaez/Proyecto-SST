@@ -61,7 +61,7 @@
                                             <a href="{{ route('usuarios.edit', $usuario->id) }}" id="accion-editar"
                                                 class="btn btn-p btn-sm" title="Editar">&#128221;</a>
 
-                                            <a data-delete="{{ route('usuarios.delete', $usuario->id) }}" id="eliminar" type="submit" class="btn btn-p btn-sm"
+                                            <a data-delete="{{ route('usuarios.delete', $usuario->id) }}" type="submit" class="eliminar-js btn btn-p btn-sm"
                                                 title="Eliminar">🗑️</a>
 
                                             <form action="{{ route('usuarios.activar', $usuario->id) }}"
@@ -128,7 +128,7 @@
 {{-- Script SweetAlert --}}
 <script>
     $(document).ready(function() {
-        $('#eliminar').on('click', eliminar);
+        $('.eliminar-js').on('click', eliminar);
     })
 
     function eliminar() {
@@ -141,7 +141,7 @@
             icon: 'question',
             showCancelButton: true,
             confirmButtonColor: '#033C59',
-            cancelButtonColor: '#DC8200',
+            cancelButtonColor: '#FBAB04',
             confirmButtonText: 'Sí, estoy seguro',
             cancelButtonText: 'Cancelar'
         }).then((result) => {

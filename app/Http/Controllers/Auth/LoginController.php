@@ -42,7 +42,7 @@ class LoginController extends Controller
 
     public function authenticated()
     {
-        if (auth()->user()->estado == 0) {
+        if (auth()->user()->estado === 0) {
             Auth::logout();
             return redirect()->route('login')->with('error', 'Usted se encuentra suspendido temporalmente. Comuníquese con el administrador del sistema.');
         }

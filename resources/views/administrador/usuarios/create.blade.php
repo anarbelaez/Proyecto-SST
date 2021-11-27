@@ -51,6 +51,9 @@
                         <div class="col-md-6">
                             <label for="direccion" class="form-label fw-bold text-darkblue">Dirección:</label>
                             <input type="text" name="direccion" value="{{ old('direccion') }}" class="form-control">
+                            @if ($errors->has('direccion'))
+                                <p class="text-danger">{{ $errors->first('direccion') }}</p>
+                            @endif
                         </div>
                         <div class="col-md-6">
                             <label for="correo" class="form-label fw-bold text-darkblue">Correo electrónico:</label>
@@ -82,82 +85,4 @@
             </div>
         </div>
     </div>
-
-    {{-- <div class="contenedor">
-
-<div class="contenedor-form">
-
-<form class="formulario-create" action=" {{ route('usuarios.store') }} " method="post">
-    @csrf
-    <label for="nombre">Nombre</label>
-    <input type="text" name="nombre" value="{{ old('nombre') }}">
-
-    @if ($errors->has('nombre'))
-        <br>
-        <p>{{$errors->first('nombre')}}</p>
-    @endif
-
-    <label for="apellido">Apellido</label>
-    <input type="text" name="apellido" value="{{ old('apellido') }}">
-
-
-    @if ($errors->has('apellido'))
-        <br>
-        <p>{{$errors->first('apellido')}}</p>
-    @endif
-
-    <label for="cedula">Cedula</label>
-    <input type="text" name="cedula" value="{{ old('cedula') }}">
-
-    @if ($errors->has('cedula'))
-        <br>
-        <p>{{$errors->first('cedula')}}</p>
-    @endif
-
-    @if ($errors->has('cedula'))
-        <br>
-        <p>{{$errors->first('cedula.numeric')}}</p>
-    @endif
-
-    <label for="telefono">Telefono</label>
-    <input type="text" name="telefono" value="{{ old('telefono') }}">
-
-    <label for="celular">Celular</label>
-    <input type="text" name="celular" value="{{ old('celular') }}">
-
-    @if ($errors->has('celular'))
-        <br>
-        <p>{{$errors->first('celular')}}</p>
-    @endif
-
-    @if ($errors->has('celular'))
-        <br>
-        <p>{{$errors->first('celular.numeric')}}</p>
-    @endif
-
-    <label for="direccion">Direccion</label>
-    <input type="text" name="direccion" value="{{ old('direccion') }}">
-
-    <label for="correo">Correo electronico</label>
-    <input type="text" name="correo" value="{{ old('correo') }}">
-
-    @if ($errors->has('correo'))
-        <br>
-        <p class="text-danger">{{$errors->first('correo')}}</p>
-    @endif
-
-    <label for="role">Rol del usuario</label>
-    <select name="role">
-        <option value="#">Seleccione una opcion</option>
-        @foreach ($roles as $role)
-            <option value="{{ $role->id }}">{{ $role->nombre }}</option>
-        @endforeach
-    </select>
-
-    <input type="submit" value="Guardar usuario">
-    <input type="reset" value="Limpiar todo">
-</form>
-</div>
-
-</div> --}}
 @endsection

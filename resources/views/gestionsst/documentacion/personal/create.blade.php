@@ -1,5 +1,4 @@
 @extends('layouts.app')
-
 @section('content')
 <div class="row">
     <div class="col-md-12">
@@ -98,7 +97,6 @@
                         <button type="reset" class="btn fw-bold bg-lightblue">Limpiar todo</button>
                     </div>
                 </form>
-
             </div>
         </div>
     </div>

@@ -17,14 +17,17 @@ class PersonalSST extends Model
         'apellidos_empleado',
         'nivelestudio_id',
         'estado',
-        'fecha_creacion',
+        'hdv',
+        'diploma',
+        'certisalud',
+        'curso50h'
     ];
 
     public function nivelestudio() {
         return $this->belongsTo('App\Models\GestionSST\NivelesEstudio');
     }
-/*     public function documentos() {
-        return $this->belongsToMany(TiposDocumentos::class);
-    }
-*/
+
+    /* public function documentos() {
+        return $this->hasMany('App\Models\GestionSST\DocumentosEmpleado');
+    } */
 }

@@ -12,13 +12,15 @@ class DocumentosEmpresa extends Model
     protected $table = "documentos_empresa";
 
     protected $fillable = [
-        'tipo_documento_id',
-        'ruta_documento',
-        'fecha_creacion',
+        'tipodocumento_id',
+        'titulo',
+        'descripcion',
+        'documento',
+        'created_at',
     ];
 
-/*     public function documento() {
-        return $this->hasMany(DocumentosEmpleado::class);
-    } */
+    public function tipodocumento() {
+        return $this->belongsTo('App\Models\GestionSST\TipoDocumento');
+    }
 
 }

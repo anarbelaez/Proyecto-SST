@@ -36,19 +36,13 @@ class UsuariosController extends Controller
             [
                 'nombre' => 'required',
                 'apellido' => 'required',
-                'cedula' => 'required|numeric',
+                'cedula' => 'required|numeric|unique:users,cedula',
                 'telefono' => 'numeric',
                 'celular' => 'numeric',
+                'direccion' => 'required',
                 'correo' => 'required|email',
                 'role' => 'required|in:1,2,3,4,5'
             ],
-            [
-                'nombre.required' => 'El nombre del usuario es requerido.',
-                'apellido.required' => 'El apellido del usuario es requerido.',
-                'cedula.required' => 'Ingrese el número de documento del usuario.',
-                'correo.required' => 'Debe ingresar una dirección de correo electrónico válida.',
-                'role.in' => 'Seleccione el rol del usuario.'
-            ]
         );
 
         $usuario = new User;

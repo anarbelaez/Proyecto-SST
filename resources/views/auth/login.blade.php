@@ -23,7 +23,7 @@
             {{-- Mi ensayo final --}}
             <div class="row justify-content-center">
                 <div class="col-md-12">
-                    <div class="card">
+                    <div class="card border-0">
                         <div class="card-header">{{ __('Bienvenido al SG-SST') }}</div>
 
                         @if (Session::has('error'))
@@ -93,7 +93,7 @@
                                         <br>
 
                                         @if (Route::has('password.request'))
-                                            <a class="btn btn-link" href="{{ route('password.request') }}">
+                                            <a class="btn btn-link text-sm" href="{{ route('password.request') }}">
                                                 {{ __('¿Olvidó su contraseña?') }}
                                             </a>
                                         @endif

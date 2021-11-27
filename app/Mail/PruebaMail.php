@@ -13,8 +13,6 @@ class PruebaMail extends Mailable
 
     public $usuario_nombre;
     public $usuario_password;
-
-
     /**
      * Create a new message instance.
      *
@@ -24,8 +22,6 @@ class PruebaMail extends Mailable
     {
         $this->usuario_nombre = $usuario_nombre;
         $this->usuario_password = $usuario_password;
-
-
     }
 
     /**
